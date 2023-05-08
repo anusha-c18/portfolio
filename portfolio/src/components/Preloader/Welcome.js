@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Welcome.css";
+import { motion, AnimatePresence } from "framer-motion";
 
-function Welcome() {
+function Welcome(props) {
   let welcomeMessages = [
     "Hello",
     "नमस्ते",
@@ -14,26 +15,33 @@ function Welcome() {
   const [message, setMessage] = useState("Hello");
 
   const updateMessage = () => {
-    console.log(message, " entered");
     setMessage((prev) => {
       let index = welcomeMessages.indexOf(prev) + 1;
-      console.log("setting message ", index);
-      if (index >= welcomeMessages.length) {
-        return "";
+      if (index === welcomeMessages.length) {
+        props.visibility();
       } else {
-        console.log("updating message ", welcomeMessages[index]);
         return welcomeMessages[index];
       }
     });
   };
 
   useEffect(() => {
-    setTimeout(updateMessage, 1000);
+    setTimeout(updateMessage, 1500);
   }, [message]);
 
   return (
     <>
-      <p className="welcome-message">{message}</p>
+      <AnimatePresence>
+        <motion.p
+          key={message}
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100, opacity: 0 }}
+          className="welcome-message"
+        >
+          {message}
+        </motion.p>
+      </AnimatePresence>
     </>
   );
 }

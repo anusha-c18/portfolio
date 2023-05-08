@@ -4,9 +4,10 @@
 
 .welcome-message {
   display: block;
-  color: white !important;
-  margin: auto;
+  color: pink !important;
   font-size: xx-large;
+  width: fit-content;
   line-height: 100vh;
   text-align: center;
+  margin: auto;
 }
