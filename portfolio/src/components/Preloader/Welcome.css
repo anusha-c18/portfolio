@@ -1,0 +1,12 @@
+* {
+  background-color: black;
+}
+
+.welcome-message {
+  display: block;
+  color: white !important;
+  margin: auto;
+  font-size: xx-large;
+  line-height: 100vh;
+  text-align: center;
+}
